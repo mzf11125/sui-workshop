@@ -113,6 +113,17 @@ module token_system::my_token {
         coin::from_balance(withdrawn_balance, ctx)
     }
 
+    /// Withdraw tokens from vault and transfer to specific recipient
+    public fun withdraw_and_transfer(
+        vault: &mut TokenVault,
+        amount: u64,
+        recipient: address,
+        ctx: &mut TxContext
+    ) {
+        let coin = withdraw_from_vault(vault, amount, ctx);
+        transfer::public_transfer(coin, recipient);
+    }
+
     /// Get vault balance
     public fun vault_balance(vault: &TokenVault): u64 {
         balance::value(&vault.balance)
