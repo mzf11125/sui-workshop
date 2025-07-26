@@ -331,7 +331,7 @@ sui client call \
   --args <SHARED_OBJECT_ID> \
 
 # Check the result on Sui Explorer
-# Visit: https://suiscan.xyz/testnet
+# Visit: https://suiscan.xyz/testnet or https://suivision.xyz/ 
 ```
 
 <img width="1996" height="1370" alt="image" src="https://github.com/user-attachments/assets/fbc2a9bc-7f35-4df8-b53c-f773b2d1ef42" />
