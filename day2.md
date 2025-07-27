@@ -884,10 +884,10 @@ sui client publish --gas-budget 50000000
 ```bash
 # Create collection
 sui client call \
-  --package <PACKAGE_ID> \
+  --package 0xeecc89d5dd2a01f8db494a184f986669a714710ebeeba9163bc9b7baabd9ec6d \
   --module simple_art_nft \
   --function create_collection \
-  --args "\"My Art Collection\"" "\"Simple NFT collection\"" 100 10000000 604800000 <CLOCK_ID> \
+  --args "\"My Art Collection\"" "\"Simple NFT collection\"" 100 10000000 604800000 0x6 \
   --gas-budget 15000000
 
 # Activate minting

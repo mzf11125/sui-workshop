@@ -1,13 +1,7 @@
-/*
-/// Module: simple_nft_collection
-module simple_nft_collection::simple_nft_collection;
-*/
-
-// For Move coding conventions, see
-// https://docs.sui.io/concepts/sui-move-concepts/conventions
-
-
 module simple_nft_collection::simple_art_nft {
+    use sui::object::{Self, UID, ID};
+    use sui::transfer;
+    use sui::tx_context::{Self, TxContext};
     use sui::event;
     use sui::clock::{Self, Clock};
     use sui::vec_map::{Self, VecMap};
@@ -114,8 +108,8 @@ module simple_nft_collection::simple_art_nft {
         mint_price: u64,
         mint_duration_ms: u64,
         clock: &Clock,
-        ctx: &mut tx_context::TxContext
-    ): AdminCap {
+        ctx: &mut TxContext
+    ): ID {
         let current_time = clock::timestamp_ms(clock);
 
         let collection = Collection {
@@ -146,9 +140,10 @@ module simple_nft_collection::simple_art_nft {
             max_supply,
         });
 
+        transfer::transfer(admin_cap, tx_context::sender(ctx));
         transfer::share_object(collection);
 
-        admin_cap
+        collection_id
     }
 
     /// Activate minting for the collection
